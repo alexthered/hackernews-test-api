@@ -29,7 +29,7 @@ class Story
     @by = params["by"]
     @descendants = params["descendants"]
     @elapsed_time = params["elapsed_time"] || get_elapsed_time(params["time"])
-    @avg_score_over_time = params["avg_score_over_time"] || get_avg_score_over_time(@elapsed_time)
+    @avg_score_over_time = params["avg_score_over_time"] || get_avg_score_over_time(@elapsed_time, @score)
     
   end
   
@@ -38,8 +38,8 @@ class Story
   end
   
   # calculate the avg_score_over_time of each article, multiply by 1000 for better differentiation and ranking
-  def get_avg_score_over_time(elapsed_time)
-    (elapsed_time == 0) ? 0 : (100 * @score / @elapsed_time)
+  def get_avg_score_over_time(elapsed_time, score)
+    (elapsed_time == 0) ? 0 : (100 * score / elapsed_time).round(1)
   end
   
   def pretty_lifetime
