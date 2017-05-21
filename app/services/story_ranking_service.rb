@@ -1,5 +1,4 @@
-
-class StoryRankService
+class StoryRankingService
   include HTTParty
   base_uri 'https://hacker-news.firebaseio.com/v0/'
   
