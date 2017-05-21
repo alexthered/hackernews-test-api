@@ -65,3 +65,6 @@ gem 'apipie-rails'
 
 # Rest-Client for making REST request to external service
 gem 'httparty'
+
+# Handling Cross Orgin Request Sharing
+gem 'rack-cors', :require => 'rack/cors'
