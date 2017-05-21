@@ -39,7 +39,7 @@ RSpec.describe Story, type: :model do
   
   describe "#time" do
     it "object time should be an instance of Time" do
-      expect(@story.time).to be_an_instance_of Time
+      expect(@story.time).to  eql(1175714200)
     end
   end
   

@@ -18,17 +18,18 @@
 class Story
   TIME_PERIOD_IN_SECOND = 1800 #0.5h
   
-  attr_accessor :id, :score, :time, :title, :url, :elapsed_time, :avg_score_over_time
+  attr_accessor :id, :score, :time, :title, :url, :elapsed_time, :avg_score_over_time, :by
 
   def initialize(params)
     
     @id = params["id"]
     @score = params["score"]
-    @time = Time.at(params["time"])
+    @time = params["time"]
     @title = params["title"]
     @url = params["url"]
-    @elapsed_time = ((Time.now - @time)/TIME_PERIOD_IN_SECOND).round(2)
-    @avg_score_over_time = (@score / @elapsed_time).round(2)
+    @by = params["by"]
+    @elapsed_time = params["elapsed_time"] || ((Time.now.to_i - @time)/TIME_PERIOD_IN_SECOND).round(2)
+    @avg_score_over_time = params["avg_score_over_time"] || (@score / @elapsed_time).round(2)
     
   end
   
