@@ -16,7 +16,7 @@ class StoryRankingService
     end
   
     #rank the retrieved story by its avg_score_over_time
-    newest_500.sort_by!{ |story| story.avg_score_over_time }
+    newest_500.sort_by!{ |story| -story.avg_score_over_time }
   
     RedisWrapper.new.push_stories(newest_500)
   end
