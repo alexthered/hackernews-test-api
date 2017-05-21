@@ -14,9 +14,8 @@ class StoryRankingService
     newest_500_ids = get_500_new_stories
   
     newest_500 = []
-    newest_500_ids.each_with_index do |id, index|
+    newest_500_ids.each_with_index do |id|
       newest_500 << get_story_item(id)
-      Rails.logger.info "DONE fetching item #{index}" if index%50 == 0
     end
   
     #rank the retrieved story by its avg_score_over_time
