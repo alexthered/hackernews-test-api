@@ -29,9 +29,13 @@ class RedisWrapper
   end
   
   def get_lifetime_top_story
-    story_json = JSON.parse(Redis.current.get(TOP_STORY))
+    story_json = Redis.current.get(TOP_STORY)
 
-    Story.new(story_json)
+    if story_json.present?
+      Story.new(JSON.parse(story_json))
+    else
+      nil
+    end
   end
   
   def set_lifetime_top_story(new_top_story)
