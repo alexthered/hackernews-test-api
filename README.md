@@ -1,24 +1,23 @@
-# README
+### Hacker news test project
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Demo
 
-Things you may want to cover:
+Website: https://hackernews-test-fe.herokuapp.com/
 
-* Ruby version
+## Documentation
 
-* System dependencies
+- API docs: https://hackernews-test-api.herokuapp.com/docs
+- Hosting: Heroku
+- Database: Redis
+- Backend: Rails
+- Front-end: React & Redux
+- CI: Codeship
+- Scheduler task: Rake task on Heroku, running every 10 minutes.
 
-* Configuration
+## To do & Room for improvement
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Selective fetching of newest 500 stories, as not all stories have changed. We should only
+re-fetch the new story in the list of newest 500 stories and the one have been updated (can be determined
+by this endpoint: https://hacker-news.firebaseio.com/v0/updates.json).
+- Better tests for controller & service for backend
+- Better UX for front-end: auto refreshing when there is new data
