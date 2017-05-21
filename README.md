@@ -4,6 +4,10 @@
 
 Website: https://hackernews-test-fe.herokuapp.com/
 
+## Respositories
+- Backend: https://github.com/alexthered/hackernews-test-api
+- Frontend: https://github.com/alexthered/hackernews-test-fe
+
 ## Documentation
 
 - API docs: https://hackernews-test-api.herokuapp.com/docs
