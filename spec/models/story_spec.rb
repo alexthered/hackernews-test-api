@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Story, type: :model do
   
   before :each do
-    @params = { 'id' => 14384187, 'score' => 780, 'time' => 1175714200, 'title' => 'Awesome article', 'url' => 'https://news.ycombinator.com/' }
+    @params = { 'id' => 14384187, 'score' => 780, 'descendants' => 2, 'time' => 1175714200, 'title' => 'Awesome article', 'url' => 'https://news.ycombinator.com/' }
     @story = Story.new(@params)
   end
 
@@ -37,9 +37,9 @@ RSpec.describe Story, type: :model do
     end
   end
   
-  describe "#time" do
-    it "object time should be an instance of Time" do
-      expect(@story.time).to  eql(1175714200)
+  describe "#descendants" do
+    it "returns a correct number of comment " do
+      expect(@story.descendants).to eql @params["descendants"]
     end
   end
   
@@ -48,7 +48,7 @@ RSpec.describe Story, type: :model do
       expect(@story.elapsed_time).not_to be_nil
     end
   end
-
+  
   describe "#avg_score_over_time" do
     it "Average score over time should not be nil" do
       expect(@story.avg_score_over_time).not_to be_nil

@@ -6,7 +6,6 @@ class V1::StoryController < ApplicationController
   EOS
   def index
     @stories = StoryRankingService.new.get_top_10_stories
-    render json: @stories, status: 200
   end
   
 

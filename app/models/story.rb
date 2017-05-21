@@ -16,21 +16,40 @@
 =end
 
 class Story
-  TIME_PERIOD_IN_SECOND = 1800 #0.5h
+  TIME_UNIT_IN_SECOND = 60 #1 minute
   
-  attr_accessor :id, :score, :time, :title, :url, :elapsed_time, :avg_score_over_time, :by
-
+  attr_accessor :id, :score, :title, :url, :elapsed_time, :descendants, :avg_score_over_time, :by
+  
   def initialize(params)
     
     @id = params["id"]
     @score = params["score"]
-    @time = params["time"]
     @title = params["title"]
     @url = params["url"]
     @by = params["by"]
-    @elapsed_time = params["elapsed_time"] || ((Time.now.to_i - @time)/TIME_PERIOD_IN_SECOND).round(2)
-    @avg_score_over_time = params["avg_score_over_time"] || (@score / @elapsed_time).round(2)
+    @descendants = params["descendants"]
+    @elapsed_time = params["elapsed_time"] || get_elapsed_time(params["time"])
+    @avg_score_over_time = params["avg_score_over_time"] || get_avg_score_over_time(@elapsed_time)
     
+  end
+  
+  def get_elapsed_time(created_time)
+    ((Time.now() - Time.at(created_time))/TIME_UNIT_IN_SECOND).round(2) unless !created_time.present?
+  end
+  
+  # calculate the avg_score_over_time of each article, multiply by 1000 for better differentiation and ranking
+  def get_avg_score_over_time(elapsed_time)
+    (elapsed_time == 0) ? 0 : (100 * @score / @elapsed_time)
+  end
+  
+  def pretty_lifetime
+    rounded_elapsed_time = self.elapsed_time.round()
+    
+    if rounded_elapsed_time < 60
+      "#{rounded_elapsed_time} minutes"
+    else
+      "#{rounded_elapsed_time / 60} hours #{rounded_elapsed_time%60} minutes"
+    end
   end
   
 end
