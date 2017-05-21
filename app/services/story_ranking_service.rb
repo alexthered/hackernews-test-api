@@ -6,7 +6,7 @@ class StoryRankingService
     return RedisWrapper.new.get_last_10_stories
   end
   
-  def fetch_stories
+  def rank_new_500_stories
     newest_500_ids = get_500_new_stories
   
     newest_500 = []
