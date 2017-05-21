@@ -22,7 +22,7 @@ class RedisWrapper
       @stories << Story.new(JSON.parse(story_json))
     end
     
-    return @stories
+    return @stories.reverse!
   end
   
 end
