@@ -61,3 +61,6 @@ end
 
 # API documentation
 gem 'apipie-rails'
+
+# Rest-Client for making REST request to external service
+gem 'httparty'
